@@ -1,0 +1,285 @@
+/* Reset & Base */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Background */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, #000000, #0a0028);
+}
+
+/* Navbar */
+nav {       
+  padding: 30px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Logo */
+nav .logo {
+  position: absolute; 
+  left: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #00cfff;
+  text-shadow: 0 0 12px cyan;
+}
+
+/* Link */
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 12px 22px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.15);
+  color: #00cfff;
+  transform: scale(1.15);
+}
+
+/* Pages */
+.page {
+  display: none;
+  text-align: center;
+  padding: 120px 20px 50px;
+  min-height: 100vh;
+  animation: fadeIn 0.8s ease;
+}
+
+.page.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Heading */
+h1 {
+  font-size: 40px;
+  text-shadow: 0 0 15px #00aaff, 0 0 25px #00ffff;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #00cfff;
+}
+
+/* Foto Profil */
+.image-below img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-top: 20px;
+  border: 4px solid rgba(0, 183, 255, 0.6);
+  box-shadow: 0 4px 15px rgba(0, 183, 255, 0.6);
+  transition: transform 0.3s ease;
+  object-fit: cover;
+}
+
+.image-below img:hover {
+  transform: scale(1.1) rotate(2deg);
+}
+
+/* Tombol */
+.btn {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background: #00cfff;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #0099ff;
+  transform: scale(1.1);
+}
+
+/* Social di bawah tombol About */
+#social-fixed {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#social-fixed img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  box-shadow: 0 0 12px rgba(0, 200, 255, 0.6);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+#social-fixed img:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 18px cyan;
+}
+
+/* Contact Form */
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,255,255,0.2);
+}
+
+#contactForm label {
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+#contactForm input,
+#contactForm textarea {
+  padding: 10px;
+  border: none;
+  margin-top: 5px;
+  border-radius: 6px;
+  outline: none;
+}
+
+#contactForm button {
+  margin-top: 15px;
+  padding: 10px;
+  background: #00cfff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s, background 0.3s;
+}
+
+#contactForm button:hover {
+  background: #0099ff;
+  transform: scale(1.05);
+}
+
+/* Footer */
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 60px;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 14px;
+  color: #aaa;
+  box-shadow: 0 -3px 20px rgba(0, 200, 255, 0.15);
+  border-top: 1px solid rgba(0, 200, 255, 0.2);
+}
+
+footer p {
+  margin: 0;
+  color: #00cfff;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
+}
+
+/* Paragraf deskripsi di Home */
+#home p {
+  max-width: 700px;   /* batasi lebar biar rata */
+  margin: 20px auto;  /* kasih jarak atas bawah, auto biar rata tengah */
+  line-height: 1.6;   /* jarak antar baris */
+  text-align: center; /* biar rapih rata tengah */
+  font-size: 16px;
+  color: #ddd;
+}
+
+/* Project Grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+/* Card Style */
+.project-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 200, 255, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px rgba(0, 200, 255, 0.6);
+}
+
+/* Gambar */
+.project-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+/* Judul */
+.project-card h3 {
+  margin: 10px 0;
+  color: #00cfff;
+}
+
+/* Deskripsi */
+.project-card p {
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+/* Tombol kecil */
+.btn-small {
+  display: inline-block;
+  padding: 8px 15px;
+  background: #00cfff;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn-small:hover {
+  background: #00aacc;
+  color: white;
+}

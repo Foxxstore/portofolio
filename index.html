@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio - Raka</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Canvas Background -->
+<canvas id="starfield"></canvas>
+
+<!-- Navbar -->
+<nav>
+  <p class="logo">Raka</p>
+  <div class="nav-links">
+    <a href="#home" onclick="showPage('home')">Home</a>
+    <a href="#about" onclick="showPage('about')">Project</a>
+    <a href="#contact" onclick="showPage('contact')">Contact</a>
+  </div>
+</nav>
+
+<!-- Home -->
+<div id="home" class="page active">
+  <h1>Selamat <span class="highlight">Datang!</span></h1>
+  <div class="image-below">
+    <img src="C:\portofolioraka\image\WhatsApp Image 2025-08-11 at 22.56.49_a5c7e632.jpg" alt="Foto Saya">
+  </div>
+  <h3>Raka Adiputra Irwan</h3>
+  <p>Halo, saya Raka Adiputra Irwan, pelajar SMKN 4 Bandung jurusan RPL. 
+     Saya telah mempelajari beberapa bahasa pemograman seperti HTML, CSS, JS, PHP, Kotlin dan MySQL.</p>
+
+  <div id="social-fixed">
+    <a href="https://www.instagram.com/rakaai._/" target="_blank">
+      <img src="C:\portofolioraka\image\instagram_408758.png" alt="Instagram">
+    </a>
+    <a href="https://wa.me/6281234567890" target="_blank">
+      <img src="C:\portofolioraka\image\whatsapp_1402181.png" alt="WhatsApp">
+    </a>
+    <a href="https://www.tiktok.com/@username" target="_blank">
+      <img src="C:\portofolioraka\image\tik-tok_3046132.png" alt="TikTok">
+    </a>
+  </div>
+
+  <button class="btn" onclick="showPage('about')">Project →</button>
+</div>
+
+<!-- About -->
+<div id="about" class="page">
+  <h2>Project Saya</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <img src="C:\portofolioraka\image\Screenshot 2025-08-23 203736.png" alt="Project 1">
+      <h3>E-Commerce platform</h3>
+      <p>Aplikasi kasir berbasis Netbeans.</p>
+      <p>Java, Netbeans</p>
+    </div>
+
+    <div class="project-card">
+      <img src="C:\portofolioraka\image\Screenshot 2025-08-23 204824.png" alt="Project 2">
+      <h3>Web data guru</h3>
+      <p>Web berisi data data guru berbasis Laravel.</p>
+      <p>PHP, Laravel</p>
+    </div>
+
+    <div class="project-card">
+      <img src="C:\portofolioraka\image\WhatsApp Image 2025-08-23 at 15.12.28_35b24897.jpg" alt="Project 3">
+      <h3>Sistem Peminjaman Aset Jurusan</h3>
+      <p>Aplikasi Android untuk peminjaman aset jurusan.</p>
+      <p>Android Studio, Kotlin</p>
+    </div>
+  </div>
+</div>
+
+<!-- Contact -->
+<div id="contact" class="page">
+  <h1>Hubungi Saya</h1>
+  <p>Silakan isi form di bawah untuk menghubungi saya secara langsung.</p>
+
+  <!-- Ganti action dengan endpoint Formspree kamu -->
+  <form id="contactForm" action="https://formspree.io/f/mzzvnwez" method="POST">
+    <label for="name">Nama:</label>
+    <input type="text" id="name" name="name" placeholder="Nama Anda" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Email Anda" required>
+
+    <label for="message">Pesan:</label>
+    <textarea id="message" name="message" placeholder="Tulis pesan Anda..." rows="5" required></textarea>
+
+    <!-- tambahkan agar bot tidak bisa spam -->
+    <input type="hidden" name="_captcha" value="false">
+    <button type="submit">Kirim Pesan</button>
+  </form>
+</div>
+
+<!-- Tombol Scroll ke Atas -->
+<button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Raka Adiputra Irwan. All Rights Reserved.</p>
+</footer>
+
+<script>
+  function showPage(pageId) {
+    let pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+  }
+
+  // Background bintang
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  for (let i = 0; i < 200; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2,
+      speed: Math.random() * 0.5 + 0.2
+    });
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'white';
+    stars.forEach(star => {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  function updateStars() {
+    stars.forEach(star => {
+      star.y += star.speed;
+      if (star.y > canvas.height) {
+        star.x = Math.random() * canvas.width;
+        star.y = 0;
+      }
+    });
+  }
+
+  function animate() {
+    drawStars();
+    updateStars();
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Tombol scroll top
+  window.addEventListener('scroll', () => {
+    document.getElementById('scrollTopBtn').style.display =
+      window.scrollY > 200 ? 'block' : 'none';
+  });
+</script>
+</body>
+</html>
