@@ -8,10 +8,8 @@
 </head>
 <body>
 
-<!-- Canvas Background -->
 <canvas id="starfield"></canvas>
 
-<!-- Navbar -->
 <nav>
   <div class="nav-links">
     <a href="#home" onclick="showPage('home')">Home</a>
@@ -20,9 +18,8 @@
   </div>
 </nav>
 
-<!-- Home -->
 <div id="home" class="page active">
-  <h1>Selamat <span class="highlight">Datang!</span></h1>
+  <h1 class="typing" data-text="Selamat Datang!"></h1>
   <div class="image-below">
     <img src="image/fotosaya.jpg" alt="Foto Saya">
   </div>
@@ -34,10 +31,10 @@
     <a href="https://www.instagram.com/rakaai._/" target="_blank">
       <img src="image/instagram.png" alt="Instagram">
     </a>
-    <a href="https://wa.me/6283838551290" target="_blank">
+    <a href="https://wa.me/6281234567890" target="_blank">
       <img src="image/WA.png" alt="WhatsApp">
     </a>
-    <a href="https://www.tiktok.com/@foxz0411?_t=ZS-8z7UMYw9YnK&_r=1" target="_blank">
+    <a href="https://www.tiktok.com/@username" target="_blank">
       <img src="image/tiktok.png" alt="TikTok">
     </a>
   </div>
@@ -45,9 +42,8 @@
   <button class="btn" onclick="showPage('about')">Project →</button>
 </div>
 
-<!-- About -->
 <div id="about" class="page">
-  <h2>Project Saya</h2>
+  <h1 class="typing" data-text="Project Saya"></h1>
   <div class="project-grid">
     <div class="project-card">
       <img src="image/Netbeans.png" alt="Project 1">
@@ -72,12 +68,10 @@
   </div>
 </div>
 
-<!-- Contact -->
 <div id="contact" class="page">
-  <h1>Hubungi Saya</h1>
+  <h1 class="typing" data-text="Hubungi Saya"></h1>
   <p>Silakan isi form di bawah untuk menghubungi saya secara langsung.</p>
 
-  <!-- Ganti action dengan endpoint Formspree kamu -->
   <form id="contactForm" action="https://formspree.io/f/mzzvnwez" method="POST">
     <label for="name">Nama:</label>
     <input type="text" id="name" name="name" placeholder="Nama Anda" required>
@@ -88,18 +82,15 @@
     <label for="message">Pesan:</label>
     <textarea id="message" name="message" placeholder="Tulis pesan Anda..." rows="5" required></textarea>
 
-    <!-- tambahkan agar bot tidak bisa spam -->
     <input type="hidden" name="_captcha" value="false">
     <button type="submit">Kirim Pesan</button>
   </form>
 </div>
 
-<!-- Tombol Scroll ke Atas -->
 <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<!-- Footer -->
 <footer>
-  <p>© 2025 Raka Adiputra Irwan.</p>
+  <p>© 2025 Raka Adiputra Irwan. All Rights Reserved.</p>
 </footer>
 
 <script>
@@ -107,9 +98,13 @@
     let pages = document.querySelectorAll('.page');
     pages.forEach(page => page.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
+
+    let heading = document.querySelector(`#${pageId} .typing`);
+    if (heading) {
+      typeWriter(heading, heading.getAttribute("data-text"));
+    }
   }
 
-  // Background bintang
   const canvas = document.getElementById('starfield');
   const ctx = canvas.getContext('2d');
   let stars = [];
@@ -157,10 +152,27 @@
   }
   animate();
 
-  // Tombol scroll top
   window.addEventListener('scroll', () => {
     document.getElementById('scrollTopBtn').style.display =
       window.scrollY > 200 ? 'block' : 'none';
+  });
+
+  function typeWriter(element, text, speed = 100) {
+    let i = 0;
+    element.textContent = "";
+    function typing() {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+        setTimeout(typing, speed);
+      }
+    }
+    typing();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    let homeHeading = document.querySelector("#home .typing");
+    typeWriter(homeHeading, homeHeading.getAttribute("data-text"));
   });
 </script>
 </body>

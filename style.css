@@ -1,4 +1,3 @@
-/* Reset & Base */
 body, html {
   margin: 0;
   padding: 0;
@@ -9,7 +8,6 @@ body, html {
   scroll-behavior: smooth;
 }
 
-/* Background */
 canvas {
   position: fixed;
   top: 0;
@@ -18,7 +16,6 @@ canvas {
   background: linear-gradient(to bottom, #000000, #0a0028);
 }
 
-/* Navbar */
 nav {       
   padding: 30px 0px;
   display: flex;
@@ -33,9 +30,6 @@ nav {
   box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-/* Logo */
-
-/* Link */
 nav a {
   color: white;
   text-decoration: none;
@@ -52,7 +46,6 @@ nav a:hover {
   transform: scale(1.15);
 }
 
-/* Pages */
 .page {
   display: none;
   text-align: center;
@@ -68,7 +61,6 @@ nav a:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Heading */
 h1 {
   font-size: 40px;
   text-shadow: 0 0 15px #00aaff, 0 0 25px #00ffff;
@@ -79,7 +71,6 @@ h1 {
   color: #00cfff;
 }
 
-/* Foto Profil */
 .image-below img {
   width: 200px;
   height: 200px;
@@ -95,7 +86,6 @@ h1 {
   transform: scale(1.1) rotate(2deg);
 }
 
-/* Tombol */
 .btn {
   padding: 10px 20px;
   margin-top: 20px;
@@ -113,7 +103,6 @@ h1 {
   transform: scale(1.1);
 }
 
-/* Social di bawah tombol About */
 #social-fixed {
   margin-top: 25px;
   display: flex;
@@ -137,7 +126,6 @@ h1 {
   box-shadow: 0 0 18px cyan;
 }
 
-/* Contact Form */
 #contactForm {
   display: flex;
   flex-direction: column;
@@ -180,8 +168,6 @@ h1 {
   transform: scale(1.05);
 }
 
-/* Footer */
-/* Footer */
 footer {
   text-align: center;
   padding: 20px 10px;
@@ -201,17 +187,15 @@ footer p {
   text-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
 }
 
-/* Paragraf deskripsi di Home */
 #home p {
-  max-width: 700px;   /* batasi lebar biar rata */
-  margin: 20px auto;  /* kasih jarak atas bawah, auto biar rata tengah */
-  line-height: 1.6;   /* jarak antar baris */
-  text-align: center; /* biar rapih rata tengah */
+  max-width: 700px;
+  margin: 20px auto;
+  line-height: 1.6;
+  text-align: center;
   font-size: 16px;
   color: #ddd;
 }
 
-/* Project Grid */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -220,7 +204,6 @@ footer p {
   padding: 10px;
 }
 
-/* Card Style */
 .project-card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(0, 200, 255, 0.3);
@@ -236,7 +219,6 @@ footer p {
   box-shadow: 0 0 25px rgba(0, 200, 255, 0.6);
 }
 
-/* Gambar */
 .project-card img {
   width: 100%;
   height: 260px;
@@ -245,13 +227,11 @@ footer p {
   margin-bottom: 15px;
 }
 
-/* Judul */
 .project-card h3 {
   margin: 10px 0;
   color: #00cfff;
 }
 
-/* Deskripsi */
 .project-card p {
   font-size: 14px;
   color: #ddd;
@@ -259,7 +239,6 @@ footer p {
   line-height: 1.5;
 }
 
-/* Tombol kecil */
 .btn-small {
   display: inline-block;
   padding: 8px 15px;
@@ -274,4 +253,16 @@ footer p {
 .btn-small:hover {
   background: #00aacc;
   color: white;
+}
+
+.typing {
+  border-right: 2px solid #00cfff;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: caret 0.8s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% { border-color: transparent; }
 }
