@@ -220,11 +220,13 @@ footer p {
 }
 
 .project-card img {
-  width: 100%;
+ width: 100%;
   height: auto;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 15px;
+  border-radius: 10px;
+  object-fit: contain; 
+  max-height: 250px;  
+  display: block;
+  margin: 0 auto;
 }
 
 .project-card h3 {
