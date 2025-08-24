@@ -220,8 +220,8 @@ footer p {
 }
 
 .project-card img {
-  width: 355px;
-  height: 355px;
+  width: 300px;
+  height: 100%px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 15px;
