@@ -126,6 +126,31 @@ h1 {
   box-shadow: 0 0 18px cyan;
 }
 
+.tech-badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 14px;                  /* atas-bawah, kiri-kanan */
+  margin: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 12px rgba(0, 200, 255, 0.6);
+  cursor: default;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tech-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(0, 200, 255, 0.9);
+}
+
+
+
+
+
 #contactForm {
   display: flex;
   flex-direction: column;
