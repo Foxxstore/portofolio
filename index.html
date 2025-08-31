@@ -10,6 +10,7 @@
 
 <canvas id="starfield"></canvas>
 
+<!-- 🔹 Navbar -->
 <nav>
   <div class="nav-links">
     <a href="#home" onclick="showPage('home')">Home</a>
@@ -18,6 +19,7 @@
   </div>
 </nav>
 
+<!-- 🔹 Home -->
 <div id="home" class="page active">
   <h1 class="typing" data-text="Selamat Datang!"></h1>
   <div class="image-below">
@@ -25,14 +27,14 @@
   </div>
   <h3>Raka Adiputra Irwan</h3>
   <p>Halo, saya Raka Adiputra Irwan, pelajar SMKN 4 Bandung jurusan RPL. 
-     Saya telah mempelajari beberapa bahasa pemograman seperti HTML, CSS, JS, PHP, Kotlin dan MySQL.</p>
+     Saya telah mempelajari beberapa bahasa pemrograman seperti HTML, CSS, JS, PHP, Kotlin,Java dan Database MySQL.</p>
 
   <div id="social-fixed">
     <a href="https://www.instagram.com/rakaai._/" target="_blank">
       <img src="image/instagram.png" alt="Instagram">
     </a>
     <a href="https://github.com/Foxxstore" target="_blank">
-      <img src="image/github.png" alt="WhatsApp">
+      <img src="image/github.png" alt="GitHub">
     </a>
     <a href="https://www.tiktok.com/@foxz0411" target="_blank">
       <img src="image/tiktok.png" alt="TikTok">
@@ -40,24 +42,24 @@
   </div>
 </div>
 
+<!-- 🔹 About -->
 <div id="about" class="page">
   <h1 class="typing" data-text="Project Saya"></h1>
   <div class="project-grid">
     <div class="project-card">
       <img src="image/Netbeans.png" alt="Project 1">
-      <h3>E-Commerce platform</h3>
+      <h3>E-Commerce Platform</h3>
       <p>Aplikasi kasir berbasis Netbeans.</p>
       <div class="tech-stack">
         <span class="tech-badge">Java</span>
         <span class="tech-badge">Netbeans</span>
       </div>
-
     </div>
 
     <div class="project-card">
       <img src="image/Laravel.png" alt="Project 2">
-      <h3>Web data guru</h3>
-      <p>Web berisi data data guru berbasis Laravel.</p>
+      <h3>Web Data Guru</h3>
+      <p>Web berisi data guru berbasis Laravel.</p>
       <div class="tech-stack">
         <span class="tech-badge">PHP</span>
         <span class="tech-badge">Laravel</span>
@@ -76,6 +78,7 @@
   </div>
 </div>
 
+<!-- 🔹 Contact -->
 <div id="contact" class="page">
   <h1 class="typing" data-text="Hubungi Saya"></h1>
   <p>Silakan isi form di bawah untuk menghubungi saya secara langsung.</p>
@@ -95,13 +98,17 @@
   </form>
 </div>
 
+<!-- 🔹 Scroll to Top -->
 <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
+<!-- 🔹 Footer -->
 <footer>
   <p>© 2025 Raka Adiputra Irwan.</p>
 </footer>
 
+<!-- 🔹 JavaScript -->
 <script>
+  // 🌌 Halaman navigasi
   function showPage(pageId) {
     let pages = document.querySelectorAll('.page');
     pages.forEach(page => page.classList.remove('active'));
@@ -113,6 +120,7 @@
     }
   }
 
+  // 🌌 Background bintang
   const canvas = document.getElementById('starfield');
   const ctx = canvas.getContext('2d');
   let stars = [];
@@ -160,11 +168,13 @@
   }
   animate();
 
+  // 🌌 Scroll button
   window.addEventListener('scroll', () => {
     document.getElementById('scrollTopBtn').style.display =
       window.scrollY > 200 ? 'block' : 'none';
   });
 
+  // 🌌 Typewriter effect
   function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.textContent = "";
@@ -178,6 +188,20 @@
     typing();
   }
 
+  // 🌌 Animasi muncul project-card
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll(".project-card").forEach(card => {
+    observer.observe(card);
+  });
+
+  // 🌌 Jalankan typewriter di home
   document.addEventListener("DOMContentLoaded", () => {
     let homeHeading = document.querySelector("#home .typing");
     typeWriter(homeHeading, homeHeading.getAttribute("data-text"));
