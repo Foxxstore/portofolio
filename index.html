@@ -125,18 +125,20 @@
     btn.style.display = window.scrollY > 200 ? "block" : "none";
   });
 
-  // 🌌 Efek Typewriter
+  // 🌌 Efek Typewriter (diperbaiki)
   function typeWriter(element, text, speed = 100) {
     let i = 0;
-    element.textContent = "";
-    function typing() {
+    element.textContent = ""; // kosongkan dulu
+    clearInterval(element._interval); // hentikan animasi sebelumnya
+
+    element._interval = setInterval(() => {
       if (i < text.length) {
         element.textContent += text.charAt(i);
         i++;
-        setTimeout(typing, speed);
+      } else {
+        clearInterval(element._interval);
       }
-    }
-    typing();
+    }, speed);
   }
 
   // Jalankan otomatis saat pertama kali load (Home aktif)
