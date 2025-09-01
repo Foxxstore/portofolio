@@ -21,7 +21,7 @@
 
 <!-- 🔹 Home -->
 <div id="home" class="page active">
-  <h1 class="typing" data-text="Selamat Datang!"></h1>
+  <h1 class="typing" data-text="Welcome To My Website!"></h1>
   <div class="image-below">
     <img src="image/fotosaya.jpg" alt="Foto Saya">
   </div>
@@ -44,7 +44,7 @@
 
 <!-- 🔹 Project -->
 <div id="project" class="page">
-  <h1 class="typing" data-text="Project Saya"></h1>
+  <h1 class="typing" data-text="My Project"></h1>
   <div class="project-grid">
     <div class="project-card">
       <img src="image/Netbeans.png" alt="Project 1">
@@ -80,7 +80,7 @@
 
 <!-- 🔹 Contact -->
 <div id="contact" class="page">
-  <h1 class="typing" data-text="Hubungi Saya"></h1>
+  <h1 class="typing" data-text="Contact Me"></h1>
   <p>Silakan isi form di bawah untuk menghubungi saya secara langsung.</p>
 
   <form id="contactForm" action="https://formspree.io/f/mzzvnwez" method="POST">
@@ -106,75 +106,26 @@
   <p>© 2025 Raka Adiputra Irwan.</p>
 </footer>
 
-<!-- 🔹 JavaScript -->
 <script>
-  // 🌌 Halaman navigasi
+  // 🌌 Navigasi halaman
   function showPage(pageId) {
-    let pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    const activePage = document.getElementById(pageId);
+    activePage.classList.add('active');
 
-    let heading = document.querySelector(`#${pageId} .typing`);
+    const heading = activePage.querySelector(".typing");
     if (heading) {
-      typeWriter(heading, heading.getAttribute("data-text"));
+      typeWriter(heading, heading.dataset.text);
     }
   }
 
-  // 🌌 Background bintang
-  const canvas = document.getElementById('starfield');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  for (let i = 0; i < 200; i++) {
-    stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2,
-      speed: Math.random() * 0.5 + 0.2
-    });
-  }
-
-  function drawStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'white';
-    stars.forEach(star => {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-      ctx.fill();
-    });
-  }
-
-  function updateStars() {
-    stars.forEach(star => {
-      star.y += star.speed;
-      if (star.y > canvas.height) {
-        star.x = Math.random() * canvas.width;
-        star.y = 0;
-      }
-    });
-  }
-
-  function animate() {
-    drawStars();
-    updateStars();
-    requestAnimationFrame(animate);
-  }
-  animate();
-
   // 🌌 Scroll button
-  window.addEventListener('scroll', () => {
-    document.getElementById('scrollTopBtn').style.display =
-      window.scrollY > 200 ? 'block' : 'none';
+  window.addEventListener("scroll", () => {
+    const btn = document.getElementById("scrollTopBtn");
+    btn.style.display = window.scrollY > 200 ? "block" : "none";
   });
 
-  // 🌌 Typewriter effect
+  // 🌌 Efek Typewriter
   function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.textContent = "";
@@ -188,24 +139,48 @@
     typing();
   }
 
-  // 🌌 Animasi muncul project-card
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      }
+  // Jalankan otomatis saat pertama kali load (Home aktif)
+  window.addEventListener("DOMContentLoaded", () => {
+    const homeHeading = document.querySelector("#home .typing");
+    if (homeHeading) {
+      typeWriter(homeHeading, homeHeading.dataset.text);
+    }
+  });
+
+  // 🌌 Background Canvas Bintang
+  const canvas = document.getElementById("starfield");
+  const ctx = canvas.getContext("2d");
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  const stars = Array.from({ length: 100 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2 + 1,
+    o: Math.random(),
+    dir: Math.random() > 0.5 ? 1 : -1
+  }));
+
+  function animateStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${s.o})`;
+      ctx.fill();
+
+      s.o += 0.02 * s.dir;
+      if (s.o <= 0.2) { s.o = 0.2; s.dir = 1; }
+      if (s.o >= 1) { s.o = 1; s.dir = -1; }
     });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll(".project-card").forEach(card => {
-    observer.observe(card);
-  });
-
-  // 🌌 Jalankan typewriter di home
-  document.addEventListener("DOMContentLoaded", () => {
-    let homeHeading = document.querySelector("#home .typing");
-    typeWriter(homeHeading, homeHeading.getAttribute("data-text"));
-  });
+    requestAnimationFrame(animateStars);
+  }
+  animateStars();
 </script>
 </body>
 </html>
