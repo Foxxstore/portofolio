@@ -174,7 +174,7 @@
       ctx.fillStyle = `rgba(255,255,255,${s.o})`;
       ctx.fill();
 
-      s.o += 0.02 * s.dir;
+      s.o += 0.01 * s.dir;
       if (s.o <= 0.2) { s.o = 0.2; s.dir = 1; }
       if (s.o >= 1) { s.o = 1; s.dir = -1; }
     });
