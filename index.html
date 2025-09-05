@@ -8,10 +8,28 @@
 </head>
 <body>
 
-<canvas id="starfield"></canvas>
 
-<!-- 🔹 Navbar -->
+<div class="particle" style="left:5%; animation-duration: 14s;"></div>
+<div class="particle" style="left:12%; animation-duration: 20s;"></div>
+<div class="particle" style="left:20%; animation-duration: 18s;"></div>
+<div class="particle" style="left:28%; animation-duration: 22s;"></div>
+<div class="particle" style="left:35%; animation-duration: 16s;"></div>
+<div class="particle" style="left:42%; animation-duration: 25s;"></div>
+<div class="particle" style="left:50%; animation-duration: 15s;"></div>
+<div class="particle" style="left:58%; animation-duration: 19s;"></div>
+<div class="particle" style="left:65%; animation-duration: 23s;"></div>
+<div class="particle" style="left:72%; animation-duration: 17s;"></div>
+<div class="particle" style="left:80%; animation-duration: 21s;"></div>
+<div class="particle" style="left:88%; animation-duration: 27s;"></div>
+<div class="particle" style="left:95%; animation-duration: 13s;"></div>
+<div class="particle" style="left:95%; animation-duration: 13s;"></div>
+<div class="particle" style="left:95%; animation-duration: 13s;"></div>
+
+
+
+<!--  Navbar -->
 <nav>
+    </a>
   <div class="nav-links">
     <a href="#home" onclick="showPage('home')">Home</a>
     <a href="#project" onclick="showPage('project')">Project</a>
@@ -19,14 +37,15 @@
   </div>
 </nav>
 
-<!-- 🔹 Home -->
+<!-- Home -->
 <div id="home" class="page active">
   <h1 class="typing" data-text="Welcome To My Website!"></h1>
   <div class="image-below">
     <img src="image/fotosaya.jpg" alt="Foto Saya">
   </div>
-  <h3>Raka Adiputra Irwan</h3>
-  <p>Halo, saya Raka Adiputra Irwan, pelajar SMKN 4 Bandung jurusan RPL. 
+<h3 class="name">Raka Adiputra Irwan</h3>
+
+  <p>Halo, saya Raka Adiputra Irwan, pelajar SMKN 4 Bandung dalam bidang Rekayasa perangkat lunak (RPL). 
      Saya telah mempelajari beberapa bahasa pemrograman seperti HTML, CSS, JS, PHP, Kotlin, Java dan Database MySQL.</p>
 
   <div id="social-fixed">
@@ -42,7 +61,7 @@
   </div>
 </div>
 
-<!-- 🔹 Project -->
+<!-- Project -->
 <div id="project" class="page">
   <h1 class="typing" data-text="My Project"></h1>
   <div class="project-grid">
@@ -78,7 +97,7 @@
   </div>
 </div>
 
-<!-- 🔹 Contact -->
+<!-- Contact -->
 <div id="contact" class="page">
   <h1 class="typing" data-text="Contact Me"></h1>
   <p>Silakan isi form di bawah untuk menghubungi saya secara langsung.</p>
@@ -98,16 +117,15 @@
   </form>
 </div>
 
-<!-- 🔹 Scroll to Top -->
-<button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<!-- 🔹 Footer -->
+
+<!-- Footer -->
 <footer>
   <p>© 2025 Raka Adiputra Irwan.</p>
 </footer>
 
 <script>
-  // 🌌 Navigasi halaman
+  // Navigasi halaman
   function showPage(pageId) {
     document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
     const activePage = document.getElementById(pageId);
@@ -119,13 +137,8 @@
     }
   }
 
-  // 🌌 Scroll button
-  window.addEventListener("scroll", () => {
-    const btn = document.getElementById("scrollTopBtn");
-    btn.style.display = window.scrollY > 200 ? "block" : "none";
-  });
 
-  // 🌌 Efek Typewriter (diperbaiki)
+  // Efek Typewriter (diperbaiki)
   function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.textContent = ""; // kosongkan dulu
@@ -141,6 +154,8 @@
     }, speed);
   }
 
+  
+
   // Jalankan otomatis saat pertama kali load (Home aktif)
   window.addEventListener("DOMContentLoaded", () => {
     const homeHeading = document.querySelector("#home .typing");
@@ -149,40 +164,17 @@
     }
   });
 
-  // 🌌 Background Canvas Bintang
-  const canvas = document.getElementById("starfield");
-  const ctx = canvas.getContext("2d");
+  window.addEventListener("scroll", () => {
+  document.querySelectorAll(".reveal").forEach(el => {
+    const windowHeight = window.innerHeight;
+    const revealTop = el.getBoundingClientRect().top;
+    if (revealTop < windowHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+});
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
 
-  const stars = Array.from({ length: 80 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2 + 1,
-    o: Math.random(),
-    dir: Math.random() > 0.5 ? 1 : -1
-  }));
-
-  function animateStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(s => {
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${s.o})`;
-      ctx.fill();
-
-      s.o += 0.01 * s.dir;
-      if (s.o <= 0.1) { s.o = 0.1; s.dir = 1; }
-      if (s.o >= 1) { s.o = 1; s.dir = -1; }
-    });
-    requestAnimationFrame(animateStars);
-  }
-  animateStars();
 </script>
 </body>
 </html>
