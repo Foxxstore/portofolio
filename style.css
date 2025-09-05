@@ -3,7 +3,6 @@ body {
   font-family: Arial, sans-serif;
   color: white;
   background: radial-gradient(circle at top, #000000, #020327);
-  overflow: hidden;
 }
 
 /* Partikel */
@@ -37,7 +36,7 @@ html {
 }
 
 h3.name {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
   margin: 15px 0;
