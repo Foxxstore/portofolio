@@ -297,7 +297,7 @@ footer p {
 @media (max-width: 768px) {
   .typing {
     font-size: 1.8rem;
-    margin-top: 40px;  /* turunkan lagi di HP */
+    margin-top: 20px;  /* turunkan lagi di HP */
   }
 }
 
