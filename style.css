@@ -288,7 +288,7 @@ footer p {
   font-weight: bold;
   color: white;
   text-align: center;
-  margin: 20px 0 30px; /* jarak atas & bawah lebih proporsional */
+  margin: 10px 0 10px; /* jarak atas & bawah lebih proporsional */
   line-height: 1.4;
   word-wrap: break-word;
 }
@@ -297,7 +297,7 @@ footer p {
 @media (max-width: 768px) {
   .typing {
     font-size: 1.8rem;
-    margin-top: 20px;  /* turunkan lagi di HP */
+    margin-top: 10px;  /* turunkan lagi di HP */
   }
 }
 
